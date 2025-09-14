@@ -1,13 +1,11 @@
 /* Google Fonts import link (Merriweather for headlines and Raleway for text) */
-
 @import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
-
 
 /* CSS variables */
 :root {
     --primary-font: "Merriweather", serif;
     --secondary-font: "Raleway", sans-serif;
-    --primary-color: #1A1A1A;  /* eerie black */   /*  */
+    --primary-color: #1A1A1A;  /* eerie black */
     --secondary-color: #2A2A2A;  /* jet */
     --text-color: #999999;  /* battleship gray */
     --headline-color: #FFB700;  /* selective yellow */
@@ -33,7 +31,51 @@ p {
 }
 
 /* Navbar styling */
-
 .navbar-brand i {
-    margin-right: 8px;
+    margin-right: 1.5rem; 
+}
+
+/* Footer styling */
+.footer-dark {
+    background-color: var(--primary-color);
+    padding-top: 1.1rem;
+    padding-bottom: 1.1rem;
+}
+
+.footer-text {
+    color: var(--text-color);
+    font-size: 1.2rem;
+    font-weight: 400;
+}
+
+.footer-link {
+    color: var(--headline-color);  
+    text-decoration: none;         
+    transition: text-decoration 0.2s ease-in-out; 
+}
+
+.footer-link:hover {
+    text-decoration: underline;     
+}
+
+.footer-dark .author {
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: #ffffff;
+}
+
+/* Navbar and footer borders */
+#navbar,
+#footer {
+    border: 2px solid var(--text-color);
+    border-radius: 7px;
+}
+
+
+/* Responsive typography */
+
+@media (max-width: 768px) {
+    .footer-text {
+        font-size: 1rem;
+    }
 }

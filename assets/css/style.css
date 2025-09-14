@@ -1,4 +1,33 @@
+/* Google Fonts import link (Merriweather for headlines and Raleway for text) */
+
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+/* CSS variables */
+:root {
+    --primary-font: "Merriweather", serif;
+    --secondary-font: "Raleway", sans-serif;
+    --primary-color: #1A1A1A;  /* eerie black */   /*  */
+    --secondary-color: #2A2A2A;  /* jet */
+    --text-color: #999999;  /* battleship gray */
+    --headline-color: #FFB700;  /* selective yellow */
+}
+
+/* Global styles */
 body {
-    background-color: green;
-    text-align: center;
+    background-color: var(--primary-color);
+    font-family: var(--secondary-font);
+}
+
+h1,
+h2,
+h3 {
+    color: var(--headline-color);
+    font-family: var(--primary-font);
+}
+
+p {
+    color: var(--text-color);
+    font-family: var(--secondary-font);
+    line-height: 1.6;
 }

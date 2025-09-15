@@ -173,9 +173,13 @@ p {
 .game-instructions li {
     color: var(--text-color);
     list-style: none;
-    margin-bottom: 0.5rem;
+    margin-bottom: 1rem;
 }
 
+.background-information li i,
+.game-instructions li i {
+    margin-right: 0.6rem;
+}
 
 /* Responsive typography */
 

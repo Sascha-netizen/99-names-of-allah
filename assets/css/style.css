@@ -51,7 +51,6 @@ p {
 .footer-link {
     color: var(--headline-color);  
     text-decoration: none;         
-    transition: text-decoration 0.2s ease-in-out; 
 }
 
 .footer-link:hover {
@@ -72,6 +71,58 @@ p {
 }
 
 
+/* Modifications of active class on link elements */
+
+.nav-link {
+    transition: color 0.3s ease;
+}
+
+.footer-link {
+    transition: all 0.3s ease;
+}
+
+
+/* Sidebars with calligraphy art from the Kiswah */
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    width: 40px;
+    background-image: url(../images/kiswah-kaaba.webp);
+    background-repeat: repeat-y;
+    background-size: cover;
+    opacity: 0.75;
+    z-index: 0;
+}
+
+.sidebar-left {
+    left: 0;
+}
+
+.sidebar-right {
+    right: 0;
+}
+
+#navbar, 
+#footer {
+  position: relative;
+  z-index: 1;  
+  background-color: #000; 
+}
+
+/* Main element centered */
+
+.page-wrap, main {
+  margin-left: 45px;   
+  margin-right: 45px;   
+  max-width: 900px;     
+  margin-inline: auto;  
+  padding: 20px;
+  text-align: center;   
+}
+
+
 /* Responsive typography */
 
 @media (max-width: 768px) {
@@ -79,3 +130,26 @@ p {
         font-size: 1rem;
     }
 }
+
+/* Responsive sidebars */
+
+@media (max-width: 768px) {
+    .sidebar {
+        width: 20px;
+    }
+    
+    .page-wrap, main {
+        margin-left: 25px;
+        margin-right: 25px;
+    }
+}
+
+/* Arabic text display (left to right) */
+
+[dir="rtl"] {
+    font-size: 1.2em;
+    font-weight: 500;
+}
+
+
+

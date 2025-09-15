@@ -123,6 +123,61 @@ p {
 }
 
 
+/* Styling of the background information and game instruction blocks */
+
+.background-information,
+.game-instructions {
+    background-color: #222222;      
+    border-radius: 15px;            
+    padding: 25px;                  
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5); 
+    max-width: 100%;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+
+.background-information {
+    text-align: left;
+}
+
+
+.game-instructions {
+    text-align: right;
+}
+
+
+.background-information:hover,
+.game-instructions:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.6);
+}
+
+
+.row.justify-content-center > .col-xl-6 {
+    margin-bottom: 20px;
+}
+
+
+.background-information {
+    text-align: left; 
+}
+
+
+.game-instructions {
+    text-align: right;
+}
+
+
+/* Styling of lists inside main element */
+
+.background-information li,
+.game-instructions li {
+    color: var(--text-color);
+    list-style: none;
+    margin-bottom: 0.5rem;
+}
+
+
 /* Responsive typography */
 
 @media (max-width: 768px) {

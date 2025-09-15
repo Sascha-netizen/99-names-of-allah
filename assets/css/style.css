@@ -1,7 +1,10 @@
 /* Google Fonts import link (Merriweather for headlines and Raleway for text) */
+
 @import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
 
+
 /* CSS variables */
+
 :root {
     --primary-font: "Merriweather", serif;
     --secondary-font: "Raleway", sans-serif;
@@ -11,18 +14,20 @@
     --headline-color: #FFB700;  /* selective yellow */
 }
 
+
 /* Global styles */
+
 body {
     background-color: var(--primary-color);
     font-family: var(--secondary-font);
 }
 
-h1,
-h2,
-h3 {
+
+h1, h2, h3 {
     color: var(--headline-color);
     font-family: var(--primary-font);
 }
+
 
 p {
     color: var(--text-color);
@@ -30,17 +35,27 @@ p {
     line-height: 1.6;
 }
 
+
 /* Navbar styling */
+
 .navbar-brand i {
     margin-right: 1.5rem; 
 }
 
+
+.nav-link {
+    transition: color 0.3s ease;
+}
+
+
 /* Footer styling */
+
 .footer-dark {
     background-color: var(--primary-color);
     padding-top: 1.1rem;
     padding-bottom: 1.1rem;
 }
+
 
 .footer-text {
     color: var(--text-color);
@@ -48,14 +63,18 @@ p {
     font-weight: 400;
 }
 
+
 .footer-link {
     color: var(--headline-color);  
-    text-decoration: none;         
+    text-decoration: none;
+    transition: all 0.3s ease;
 }
+
 
 .footer-link:hover {
     text-decoration: underline;     
 }
+
 
 .footer-dark .author {
     font-size: 1.2rem;
@@ -63,22 +82,15 @@ p {
     color: #ffffff;
 }
 
+
 /* Navbar and footer borders */
-#navbar,
-#footer {
+
+#navbar, #footer {
     border: 2px solid var(--text-color);
     border-radius: 7px;
-}
-
-
-/* Modifications of active class on link elements */
-
-.nav-link {
-    transition: color 0.3s ease;
-}
-
-.footer-link {
-    transition: all 0.3s ease;
+    position: relative;
+    z-index: 1;  
+    background-color: #000; 
 }
 
 
@@ -96,30 +108,26 @@ p {
     z-index: 0;
 }
 
-.sidebar-left {
-    left: 0;
+
+.sidebar-left { 
+    left: 0; 
 }
 
-.sidebar-right {
-    right: 0;
+
+.sidebar-right { 
+    right: 0; 
 }
 
-#navbar, 
-#footer {
-  position: relative;
-  z-index: 1;  
-  background-color: #000; 
-}
 
 /* Main element centered */
 
 .page-wrap, main {
-  margin-left: 45px;   
-  margin-right: 45px;   
-  max-width: 900px;     
-  margin-inline: auto;  
-  padding: 20px;
-  text-align: center;   
+    margin-left: 45px;   
+    margin-right: 45px;   
+    max-width: 900px;     
+    margin-inline: auto;  
+    padding: 20px;
+    text-align: center;   
 }
 
 
@@ -142,7 +150,7 @@ p {
 
 
 .game-instructions {
-    text-align: right;
+    text-align: left; 
 }
 
 
@@ -153,20 +161,11 @@ p {
 }
 
 
+/* Spacing for columns */
+
 .row.justify-content-center > .col-xl-6 {
     margin-bottom: 20px;
 }
-
-
-.background-information {
-    text-align: left; 
-}
-
-
-.game-instructions {
-    text-align: right;
-}
-
 
 /* Styling of lists inside main element */
 
@@ -181,23 +180,20 @@ p {
 /* Responsive typography */
 
 @media (max-width: 768px) {
-    .footer-text {
-        font-size: 1rem;
-    }
+    .footer-text { font-size: 1rem; }
 }
+
 
 /* Responsive sidebars */
 
 @media (max-width: 768px) {
-    .sidebar {
-        width: 20px;
-    }
-    
+    .sidebar { width: 20px; }
     .page-wrap, main {
         margin-left: 25px;
         margin-right: 25px;
     }
 }
+
 
 /* Arabic text display (left to right) */
 
@@ -205,6 +201,3 @@ p {
     font-size: 1.2em;
     font-weight: 500;
 }
-
-
-

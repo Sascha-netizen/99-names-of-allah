@@ -182,7 +182,7 @@ p {
 }
 
 
-/* Styling of game-level div */
+/* Styling of game-level div and buttons*/
 
 #game-levels-container {
     background-color: #222222;
@@ -201,7 +201,14 @@ p {
 
 
 #game-levels-container .btn-warning {
+    transition: background-color 0.3s ease, color 0.3s ease, font-weight 0.3s ease;
+}
+
+#game-levels-container .btn-warning:hover {
+    
     font-weight: 700;
+    background-color: #e6a700;
+    color: #000;
 }
 
 /* Responsive typography */

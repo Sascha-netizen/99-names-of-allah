@@ -81,18 +81,21 @@
     </nav>
 
     <!-- The main element holds the key content of the page: headline, game table etc. -->
-    <main>
+  <main>
+  <div class="container page-wrap">
+    <h1><span dir="rtl">الأسماء الحسنى</span> - The 99 Names of Allah</h1>
+    <p>This is the game table.</p>
 
-      <div class="page-wrap"> 
-      <h1><span dir="rtl">الأسماء الحسنى</span>- The 99 Names of Allah</h1>
+    <div class="game-background">
+      <div class="overlay"></div>
 
-      
-      <p>
-        This is the game table.
-      </p>
-      </div>
+      <!-- Cards will be injected here by JS -->
+      <div id="game-table" class="card-grid"></div>
+    </div>
+     
+  </div>
+</main>
 
-    </main>
 
     <!-- Footer: name and contact details -->
     <!-- Mt-auto to push the footer down -->

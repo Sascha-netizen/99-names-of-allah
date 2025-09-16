@@ -182,6 +182,23 @@ p {
 }
 
 
+/* Styling of game-level div */
+
+#game-levels-container {
+    background-color: #222222;
+    border: 2px solid var(--text-color);
+    border-radius: 10px;
+    padding: 25px;
+}
+
+
+#button-headline {
+    color: var(--text-color);
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+}
+
 
 /* Responsive typography */
 

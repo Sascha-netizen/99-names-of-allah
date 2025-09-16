@@ -200,6 +200,10 @@ p {
 }
 
 
+#game-levels-container .btn-warning {
+    font-weight: 700;
+}
+
 /* Responsive typography */
 
 @media (max-width: 768px) {

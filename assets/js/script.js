@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", async function() {
         const shuffled = names.sort(() => 0.5 - Math.random());
         const selectedNames = shuffled.slice(0, numberOfPairs);
 
-        console.log(selectedNames);
+        generateCards(selectedNames);
     }
 
 });
@@ -46,5 +46,20 @@ async function loadNames() {
     }
 }
 
+function generateCards(selectedNames) {
+    const pairs = selectedNames.concat(selectedNames);
+    const shuffledPairs = pairs.sort(() => 0.5 - Math.random());
 
+    const gameTable = document.getElementById("game-table");
+    gameTable.innerHTML = "";
+
+    for (let card of shuffledPairs) {
+        const cardElement = document.createElement("div");
+        cardElement.classList.add("card");
+        cardElement.dataset.arabic = card.arabic;
+        cardElement.dataset.english = card.english;
+        cardElement.textContent = "?";
+        gameTable.appendChild(cardElement);
+    }
+}
 

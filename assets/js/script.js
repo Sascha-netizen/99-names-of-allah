@@ -43,7 +43,7 @@ document.addEventListener("DOMContentLoaded", async function() {
     }
 });
 
-// Fetch/liad names from JSON
+// Fetch/load names from JSON
 async function loadNames() {
     try {
         const response = await fetch('assets/data/names.json');
@@ -172,3 +172,37 @@ function incrementMatches() {
     }
     matchesEl.textContent = `Matches: ${current + 1}`;
 }
+
+
+// Reset button functionality
+function resetGame() {
+    // Reset counters
+    document.getElementById("attempts").textContent = "Attempts: 0";
+    document.getElementById("matches").textContent = "Matches: 0";
+
+    const gameTable = document.getElementById("game-table");
+    const level = gameTable.getAttribute("data-level");
+
+    // Regenerate cards
+    loadNames().then(names => {
+        let numberOfPairs; // <-- removed stray '='
+        if (level === "easy") numberOfPairs = 4; // <-- fixed missing quote
+        else if (level === "medium") numberOfPairs = 6;
+        else if (level === "challenging") numberOfPairs = 8;
+        else numberOfPairs = 4;
+
+        const shuffled = shuffle(names);
+        const selectedNames = shuffled.slice(0, numberOfPairs);
+
+        generateCards(selectedNames, level);
+        setupCardLogic();
+    });  
+}
+
+// Add event listener to reset button
+document.addEventListener("DOMContentLoaded", () => {
+    const resetBtn = document.getElementById("reset-btn");
+    if (resetBtn) {
+        resetBtn.addEventListener("click", resetGame);
+    }
+});

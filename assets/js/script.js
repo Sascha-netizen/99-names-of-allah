@@ -29,13 +29,13 @@ document.addEventListener("DOMContentLoaded", async function() {
 
         let numberOfPairs;
         if (level === 'easy') {
-            numberOfPairs = 6;
+            numberOfPairs = 4;  // Changed from 6 to 4
         } else if (level === 'medium') {
-            numberOfPairs = 9;
+            numberOfPairs = 6;  // Changed from 9 to 6
         } else if (level === 'challenging') {
-            numberOfPairs = 12;
+            numberOfPairs = 8;  // Changed from 12 to 8
         } else {
-            numberOfPairs = 6; // default fallback
+            numberOfPairs = 4; // default fallback changed to 4
         }
 
         // Use proper shuffle instead of biased sort method

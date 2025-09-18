@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", async function() {
         console.log(names);
 
         const params = new URLSearchParams(window.location.search);
-        const level = params.get("level");
+        let level = params.get("level");
 
         let numberOfPairs;
         if (level === 'easy') {
@@ -35,7 +35,9 @@ document.addEventListener("DOMContentLoaded", async function() {
         } else if (level === 'challenging') {
             numberOfPairs = 8;  // Changed from 12 to 8
         } else {
-            numberOfPairs = 4; // default fallback changed to 4
+            // If no level parameter or invalid level, default to easy
+            level = 'easy';
+            numberOfPairs = 4;
         }
 
         // Use proper shuffle instead of biased sort method

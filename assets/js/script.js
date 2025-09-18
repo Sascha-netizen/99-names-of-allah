@@ -111,13 +111,17 @@ function setupCardLogic() {
         });
     });
 
+
     function checkForMatch() {
         const [card1, card2] = flippedCards;
         const match1 = card1.querySelector('.card-back span[dir="rtl"]').textContent;
         const match2 = card2.querySelector('.card-back span[dir="rtl"]').textContent;
 
+        incrementAttempts();
+
         if (match1 === match2) {
             // Match found
+            incrementMatches();
             resetTurn();
             checkWin();
         } else {
@@ -142,4 +146,29 @@ function setupCardLogic() {
             setTimeout(() => alert("You found all pairs! 🎉"), 500);
         }
     }
+}
+
+
+// Counters for attempts and matches
+
+function incrementAttempts() {
+    const attemptsEl = document.getElementById("attempts");
+    let current = 0;
+
+    if (attemptsEl && attemptsEl.textContent) {
+        const match = attemptsEl.textContent.match(/\d+/);
+        if (match) current = parseInt(match[0], 10);
+    }
+    attemptsEl.textContent = `Attempts: ${current + 1}`;
+}
+
+function incrementMatches() {
+    const matchesEl = document.getElementById("matches");
+    let current = 0;
+
+    if (matchesEl && matchesEl.textContent) {
+        const match = matchesEl.textContent.match(/\d+/);
+        if (match) current = parseInt(match[0], 10);
+    }
+    matchesEl.textContent = `Matches: ${current + 1}`;
 }

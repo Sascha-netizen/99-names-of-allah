@@ -8,83 +8,73 @@ function shuffle(array) {
     return result;
 }
 
-// Wait for the DOM to finish loading and adding event listeners to the buttons
+// Wait for the DOM to finish loading
 document.addEventListener("DOMContentLoaded", async function() {
-    let buttons = document.querySelectorAll("#game-levels-container button");
-
-    for (let button of buttons) {
+    // Level buttons
+    const buttons = document.querySelectorAll("#game-levels-container button");
+    buttons.forEach(button => {
         button.addEventListener("click", function() {
             const level = this.getAttribute("data-type");
             window.location.href = `game.html?level=${level}`;
         });
-    }
+    });
 
+    
     if (window.location.pathname.includes("game.html")) {
-        // fetch json
         const names = await loadNames();
-        console.log(names);
 
         const params = new URLSearchParams(window.location.search);
         let level = params.get("level");
 
         let numberOfPairs;
-        if (level === 'easy') {
-            numberOfPairs = 4;  // Changed from 6 to 4
-        } else if (level === 'medium') {
-            numberOfPairs = 6;  // Changed from 9 to 6
-        } else if (level === 'challenging') {
-            numberOfPairs = 8;  // Changed from 12 to 8
-        } else {
-            // If no level parameter or invalid level, default to easy
+        if (level === 'easy') numberOfPairs = 4;
+        else if (level === 'medium') numberOfPairs = 6;
+        else if (level === 'challenging') numberOfPairs = 8;
+        else {
             level = 'easy';
             numberOfPairs = 4;
         }
 
-        // Use proper shuffle instead of biased sort method
         const shuffled = shuffle(names);
         const selectedNames = shuffled.slice(0, numberOfPairs);
 
         generateCards(selectedNames, level);
+        setupCardLogic();
     }
 });
 
+// Fetch/liad names from JSON
 async function loadNames() {
     try {
         const response = await fetch('assets/data/names.json');
-        const names = await response.json();
-        return names;
+        return await response.json();
     } catch (error) {
         console.error('Error loading names:', error);
         return [];
     }
 }
 
+
+// Generate cards on the game table
 function generateCards(selectedNames, level) {
-    // Create pairs and shuffle them properly
     const pairs = selectedNames.concat(selectedNames);
     const shuffledPairs = shuffle(pairs);
 
     const gameTable = document.getElementById("game-table");
     gameTable.innerHTML = "";
-    
-    // Add level data attribute for CSS targeting
     gameTable.setAttribute('data-level', level);
 
     for (let card of shuffledPairs) {
-        // outer card container
         const cardElement = document.createElement("div");
         cardElement.classList.add("card");
 
-        // inner wrapper (for flip animation)
         const inner = document.createElement("div");
         inner.classList.add("card-inner");
 
-        // front (what you see before flipping)
         const front = document.createElement("div");
         front.classList.add("card-front");
         front.textContent = "?";
 
-        // back (revealed on flip)
         const back = document.createElement("div");
         back.classList.add("card-back");
         back.innerHTML = `
@@ -92,17 +82,64 @@ function generateCards(selectedNames, level) {
             <span>${card.english}</span>
         `;
 
-        // assemble card
         inner.appendChild(front);
         inner.appendChild(back);
         cardElement.appendChild(inner);
-
-        // add to game table
         gameTable.appendChild(cardElement);
+    }
+}
 
-        // click handler to flip
-        cardElement.addEventListener("click", () => {
-            cardElement.classList.toggle("flipped");
+
+// Logic to prevent flipping more than two cards and check matches
+
+function setupCardLogic() {
+    const cards = document.querySelectorAll(".card");
+    let flippedCards = [];
+    let isProcessing = false;
+
+    cards.forEach(card => {
+        card.addEventListener("click", () => {
+            if (isProcessing || card.classList.contains("flipped")) return;
+
+            card.classList.add("flipped");
+            flippedCards.push(card);
+
+            if (flippedCards.length === 2) {
+                isProcessing = true;
+                checkForMatch();
+            }
         });
+    });
+
+    function checkForMatch() {
+        const [card1, card2] = flippedCards;
+        const match1 = card1.querySelector('.card-back span[dir="rtl"]').textContent;
+        const match2 = card2.querySelector('.card-back span[dir="rtl"]').textContent;
+
+        if (match1 === match2) {
+            // Match found
+            resetTurn();
+            checkWin();
+        } else {
+            // No match - flip back after delay
+            setTimeout(() => {
+                card1.classList.remove("flipped");
+                card2.classList.remove("flipped");
+                resetTurn();
+            }, 2000);
+        }
+    }
+
+    function resetTurn() {
+        flippedCards = [];
+        isProcessing = false;
+    }
+
+    function checkWin() {
+        const allCards = document.querySelectorAll(".card");
+        const allFlipped = [...allCards].every(card => card.classList.contains("flipped"));
+        if (allFlipped) {
+            setTimeout(() => alert("You found all pairs! 🎉"), 500);
+        }
     }
 }

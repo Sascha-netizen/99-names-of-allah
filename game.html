@@ -95,8 +95,8 @@
 
         <!-- Scoreboard: counters for attempts and matches -->
         <div id="scoreboard">
-          <span id="attempts" class="btn btn-danger">Attempts: 0</span>
-          <span id="matches" class="btn btn-success">Matches: 0</span>
+          <span id="attempts" class="badge rounded-pill bg-danger fs-6 p-2">Attempts: 0</span>
+          <span id="matches" class="badge rounded-pill bg-success fs-6 p-2">Matches: 0</span>
         </div>
 
         <div class="game-background">
@@ -104,6 +104,13 @@
 
           <!-- Cards will be injected here by JS -->
           <div id="game-table" class="card-grid"></div>
+        </div>
+
+        <!-- Reset button -->
+        <div class="text-center mt-3">
+          <button id="reset-btn" class="btn btn-primary">
+            <i class="fa-solid fa-rotate-right me-2"></i>Reset Game
+          </button>
         </div>
       </div>
     </main>

@@ -395,6 +395,14 @@ p {
 }
 
 
+/* Game reset effect */
+
+.flash {
+    background-color: #fff7e6;
+    transition: background-color 0.3 ease;
+}
+
+
 @media (max-width: 480px) {
     .card-grid {
         grid-template-columns: repeat(2, 1fr) !important;

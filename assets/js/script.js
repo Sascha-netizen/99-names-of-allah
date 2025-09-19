@@ -180,6 +180,27 @@ function incrementMatches() {
 
 
 // Reset button functionality
+
+function flashElement(element, times, interval) {
+    let count = 0;
+    const flashInterval = setInterval(() => {
+        element.classList.toggle("flash");
+        count++;
+        if (count >= times * 2) clearInterval(flashInterval); // on and off count as 2
+    }, interval);
+}
+
+// Flash helper
+function flashElement(element, times, interval) {
+    let count = 0;
+    const flashInterval = setInterval(() => {
+        element.classList.toggle("flash");
+        count++;
+        if (count >= times * 2) clearInterval(flashInterval); 
+    }, interval);
+}
+
+// Reset game function
 function resetGame() {
     // Reset counters
     document.getElementById("attempts").textContent = "Attempts: 0";
@@ -188,10 +209,13 @@ function resetGame() {
     const gameTable = document.getElementById("game-table");
     const level = gameTable.getAttribute("data-level");
 
+    // Play reset sound
+    playSound("reset");
+
     // Regenerate cards
     loadNames().then(names => {
-        let numberOfPairs; // <-- removed stray '='
-        if (level === "easy") numberOfPairs = 4; // <-- fixed missing quote
+        let numberOfPairs; 
+        if (level === "easy") numberOfPairs = 4; 
         else if (level === "medium") numberOfPairs = 6;
         else if (level === "challenging") numberOfPairs = 8;
         else numberOfPairs = 4;
@@ -201,20 +225,21 @@ function resetGame() {
 
         generateCards(selectedNames, level);
         setupCardLogic();
-    });  
+
+        // Flash the game table twice with 250ms interval
+        flashElement(gameTable, 4, 250);
+    });
 }
 
-
-// Add event listener to reset button
+// Event listener for reset button
 document.addEventListener("DOMContentLoaded", () => {
     const resetBtn = document.getElementById("reset-btn");
     if (resetBtn) {
-        resetBtn.addEventListener("click", () => {
-            playSound("reset");
-            resetGame();
-        });
+        resetBtn.addEventListener("click", resetGame);
     }
 });
+
+
 
 
 // Helper function for sound effects

@@ -227,7 +227,7 @@ function resetGame() {
         setupCardLogic();
 
         // Flash the game table twice with 250ms interval
-        flashElement(gameTable, 4, 250);
+        flashElement(gameTable, 6, 250);
     });
 }
 

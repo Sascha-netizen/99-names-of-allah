@@ -132,8 +132,9 @@ function setupCardLogic() {
             setTimeout(() => {
                 card1.classList.remove("flipped");
                 card2.classList.remove("flipped");
+                playSound("mismatch");
                 resetTurn();
-            }, 2000);
+            }, 1000);
         }
     }
 
@@ -146,7 +147,8 @@ function setupCardLogic() {
         const allCards = document.querySelectorAll(".card");
         const allFlipped = [...allCards].every(card => card.classList.contains("flipped"));
         if (allFlipped) {
-            setTimeout(() => alert("You found all pairs! 🎉"), 500);
+            playSound("completion");
+            setTimeout(() => alert("You found all pairs! 🎉"), 1000);
         }
     }
 }
@@ -202,11 +204,15 @@ function resetGame() {
     });  
 }
 
+
 // Add event listener to reset button
 document.addEventListener("DOMContentLoaded", () => {
     const resetBtn = document.getElementById("reset-btn");
     if (resetBtn) {
-        resetBtn.addEventListener("click", resetGame);
+        resetBtn.addEventListener("click", () => {
+            playSound("reset");
+            resetGame();
+        });
     }
 });
 
@@ -216,7 +222,10 @@ document.addEventListener("DOMContentLoaded", () => {
 function playSound(name) {
     const sounds = {
         flip: "assets/audio/card-flip.mp3",
-        match: "assets/audio/ping-match.mp3"
+        match: "assets/audio/ping-match.mp3",
+        mismatch: "assets/audio/buzz-mismatch.mp3",
+        completion: "assets/audio/game-complete.mp3",
+        reset: "assets/audio/sufi-reset.mp3"
     };
 
     const file = sounds[name];

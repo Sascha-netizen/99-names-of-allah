@@ -101,6 +101,8 @@ function setupCardLogic() {
         card.addEventListener("click", () => {
             if (isProcessing || card.classList.contains("flipped")) return;
 
+            playSound("flip");
+
             card.classList.add("flipped");
             flippedCards.push(card);
 
@@ -122,6 +124,7 @@ function setupCardLogic() {
         if (match1 === match2) {
             // Match found
             incrementMatches();
+            playSound("match");
             resetTurn();
             checkWin();
         } else {
@@ -206,3 +209,20 @@ document.addEventListener("DOMContentLoaded", () => {
         resetBtn.addEventListener("click", resetGame);
     }
 });
+
+
+// Helper function for sound effects
+
+function playSound(name) {
+    const sounds = {
+        flip: "assets/audio/card-flip.mp3",
+        match: "assets/audio/ping-match.mp3"
+    };
+
+    const file = sounds[name];
+    if(!file) return;
+
+    const audio = new Audio(file);
+    audio.currentTime = 0;
+    audio.play();
+}

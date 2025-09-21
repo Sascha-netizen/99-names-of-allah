@@ -418,7 +418,7 @@ p {
 }
 
 .link-list li i {
-    color: var(--headline-color);
+    color: var(--text-color);
     font-size: 1.2rem;
     margin-top: 0.2rem;
     flex-shrink: 0;

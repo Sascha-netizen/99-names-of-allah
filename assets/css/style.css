@@ -400,6 +400,50 @@ p {
 .flash {
     background-color: #fff7e6;
     transition: background-color 0.3 ease;
+} 
+
+
+/* Styling for links on links.html */
+
+.link-list {
+    text-align: left;
+    padding-left: 1rem;
+}
+
+.link-list li {
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+}
+
+.link-list li i {
+    color: var(--headline-color);
+    font-size: 1.2rem;
+    margin-top: 0.2rem;
+    flex-shrink: 0;
+}
+
+.link-list .link-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.link-list span {
+    color: var(--text-color);
+    display: block; 
+    margin-bottom: 0.5rem;
+}
+
+.link-list li a {
+    color: var(--headline-color);
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.link-list li a:hover {
+    text-decoration: underline;
+    opacity: 0.8;
 }
 
 

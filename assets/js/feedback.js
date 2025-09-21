@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-  // Don't initialize EmailJS here - it's already initialized in the HTML
+  
   
   const form = document.getElementById("feedback-form");
   const status = document.getElementById("form-status");

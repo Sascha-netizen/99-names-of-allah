@@ -1,70 +1,84 @@
+console.log("Feedback script loaded");
+
 document.addEventListener("DOMContentLoaded", function () {
-  
+  console.log("DOM loaded");
   
   const form = document.getElementById("feedback-form");
   const status = document.getElementById("form-status");
-  const feedbackModal = new bootstrap.Modal(document.getElementById("feedbackModal"));
-
-  if (!form || !status) {
-    console.error("Required elements not found!");
+  
+  console.log("Form element:", form);
+  console.log("Status element:", status);
+  console.log("EmailJS available:", typeof emailjs);
+  
+  if (!form) {
+    console.error("Form not found!");
+    return;
+  }
+  
+  if (!status) {
+    console.error("Status element not found!");
     return;
   }
 
   form.addEventListener("submit", function (e) {
+    console.log("Form submit event triggered");
     e.preventDefault();
 
+    const name = document.querySelector('input[name="name"]').value;
+    const email = document.querySelector('input[name="email"]').value;
+    const message = document.querySelector('textarea[name="message"]').value;
     const submitBtn = form.querySelector("button[type='submit']");
-    const formData = new FormData(this);
-    
-    const name = formData.get('name');
-    const email = formData.get('email');
-    const message = formData.get('message');
 
-    // Validation
+    console.log("Form values:", { name, email, message });
+    console.log("Submit button:", submitBtn);
+
     if (!name || !email || !message) {
-      status.innerText = "❌ Please fill in all fields.";
+      console.log("Validation failed - missing fields");
+      status.innerText = "Please fill in all fields.";
       status.style.color = "red";
       return;
     }
 
-    // Update UI
+    console.log("Validation passed, preparing to send email");
+    
     submitBtn.disabled = true;
     submitBtn.innerText = "Sending...";
-    status.innerText = "Sending message...";
+    status.innerText = "Sending...";
     status.style.color = "blue";
 
-    // Template parameters
     const templateParams = {
       name: name,
       email: email,
       message: message
     };
+    
+    console.log("Template params:", templateParams);
+    console.log("About to call emailjs.send...");
 
-    console.log("Sending email...");
-
-    // Send email (EmailJS is already initialized in HTML)
     emailjs.send("service_xoo4akw", "template_v8so719", templateParams)
       .then(function(response) {
-        console.log("SUCCESS!", response);
+        console.log("EmailJS SUCCESS:", response);
         status.innerText = "✅ Message sent successfully!";
         status.style.color = "green";
         form.reset();
-
-        // Close modal after 1.5 seconds
+        
         setTimeout(function() {
-          feedbackModal.hide();
           status.innerText = "";
           status.style.color = "";
-        }, 1500);
+        }, 3000);
       })
       .catch(function(error) {
-        console.error("ERROR!", error);
-        status.innerText = "❌ Failed to send message. Please try again.";
+        console.error("EmailJS ERROR:", error);
+        console.error("Error details:", error.status, error.text);
+        status.innerText = "❌ Failed to send message.";
         status.style.color = "red";
       })
       .finally(function() {
+        console.log("EmailJS call completed");
         submitBtn.disabled = false;
         submitBtn.innerText = "Send";
       });
   });
+  
+  console.log("Event listener attached successfully");
 });

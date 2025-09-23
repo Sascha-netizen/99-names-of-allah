@@ -171,31 +171,35 @@
     <script src="assets/js/feedback.js"></script>
 
     <!-- Feedback Modal -->
-    <div class="modal fade" id="feedbackModal" tabindex="-1" aria-labelledby="feedbackModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h6 class="modal-title" id="feedbackModalLabel">Send Us Feedback</h6>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+ <div class="modal fade" id="feedbackModal" tabindex="-1" aria-labelledby="feedbackModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h6 class="modal-title" id="feedbackModalLabel">Send Us Feedback</h6>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="feedback-form">
+          <div class="mb-2">
+            <label for="feedback-name" class="form-label visually-hidden">Your Name</label>
+            <input type="text" id="feedback-name" class="form-control form-control-sm" name="name" placeholder="Your Name" required>
           </div>
-          <div class="modal-body">
-            <form id="feedback-form">
-              <div class="mb-2">
-                <input type="text" class="form-control form-control-sm" name="name" placeholder="Your Name" required>
-              </div>
-              <div class="mb-2">
-                <input type="email" class="form-control form-control-sm" name="email" placeholder="Your Email" required>
-              </div>
-              <div class="mb-2">
-                <textarea class="form-control form-control-sm" name="message" rows="3" placeholder="Your Message" required></textarea>
-              </div>
-              <button type="submit" class="btn btn-warning btn-sm w-100">Send</button>
-              <p id="form-status" class="mt-1 small"></p>
-            </form>
+          <div class="mb-2">
+            <label for="feedback-email" class="form-label visually-hidden">Your Email</label>
+            <input type="email" id="feedback-email" class="form-control form-control-sm" name="email" placeholder="Your Email" required>
           </div>
-        </div>
+          <div class="mb-2">
+            <label for="feedback-message" class="form-label visually-hidden">Your Message</label>
+            <textarea id="feedback-message" class="form-control form-control-sm" name="message" rows="3" placeholder="Your Message" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-warning btn-sm w-100">Send</button>
+          <p id="form-status" class="mt-1 small"></p>
+        </form>
       </div>
     </div>
+  </div>
+</div>
+
 
     <!-- Custom script -->
     <script src="assets/js/script.js"></script>

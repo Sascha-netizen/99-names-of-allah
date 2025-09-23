@@ -244,13 +244,16 @@
       <div class="modal-body">
         <form id="feedback-form">
           <div class="mb-2">
-            <input type="text" class="form-control form-control-sm" name="name" placeholder="Your Name" required>
+            <label for="feedback-name" class="visually-hidden">Your Name</label>
+            <input type="text" class="form-control form-control-sm" id="feedback-name" name="name" placeholder="Your Name" required>
           </div>
           <div class="mb-2">
-            <input type="email" class="form-control form-control-sm" name="email" placeholder="Your Email" required>
+            <label for="feedback-email" class="visually-hidden">Your Email</label>
+            <input type="email" class="form-control form-control-sm" id="feedback-email" name="email" placeholder="Your Email" required>
           </div>
           <div class="mb-2">
-            <textarea class="form-control form-control-sm" name="message" rows="3" placeholder="Your Message" required></textarea>
+            <label for="feedback-message" class="visually-hidden">Your Message</label>
+            <textarea class="form-control form-control-sm" id="feedback-message" name="message" rows="3" placeholder="Your Message" required></textarea>
           </div>
           <button type="submit" class="btn btn-warning btn-sm w-100">Send</button>
           <p id="form-status" class="mt-1 small"></p>
@@ -259,6 +262,7 @@
     </div>
   </div>
 </div>
+
 
 
 
